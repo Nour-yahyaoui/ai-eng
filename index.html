@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Engineering Mastery</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .grid-bg {
+            background: 
+                linear-gradient(27deg, rgba(99, 102, 241, 0.03) 0%, rgba(99, 102, 241, 0) 50%),
+                linear-gradient(207deg, rgba(139, 92, 246, 0.03) 0%, rgba(139, 92, 246, 0) 50%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 20px;
+            opacity: 0.1;
+            animation: float 25s infinite linear;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #10b981, #0d9488);
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 5s;
+            border-radius: 30px;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            top: 60%;
+            left: 15%;
+            animation-delay: 10s;
+            border-radius: 50px;
+        }
+        
+        .shape-4 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, #ec4899, #db2777);
+            top: 20%;
+            right: 15%;
+            animation-delay: 15s;
+            border-radius: 40px;
+        }
+        
+        .shape-5 {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 20s;
+            border-radius: 25px;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, 20px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 40px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-20px, 20px) rotate(270deg);
+            }
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+        
+        .glass-effect-dark {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Theme Transition */
+        .theme-transition {
+            transition: all 0.3s ease;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Navbar Styles */
+        .navbar-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        
+        .nav-link.active {
+            background-color: rgba(54, 54, 68, 0.2);
+            color: black;
+            font-weight: 600;
+        }
+        
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        /* Content Specific Styles */
+        .prompt-badge {
+            background: black;
+            color: white;
+        }
+        
+        .success-badge {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(102, 126, 234, 0.2);
+            z-index: -1;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #667eea;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #667eea; }
+        }
+        
+        .template-card {
+            background: linear-gradient(145deg, #ffffff, #f5f7fa);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05), -5px -5px 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        .tip-card {
+            border-left: 4px solid #667eea;
+        }
+        
+        .constraint-card {
+            border-left: 4px solid #f5576c;
+        }
+        
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="grid-bg"></div>
+        <div class="grid-pattern"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Modern Simplified Navbar -->
+    <nav class="navbar-blur fixed top-0 left-0 right-0 z-50 theme-transition bg-white/90 border-b border-gray-200/30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 rounded-xl bg-black flex items-center justify-center">
+                            <i class="fas fa-robot text-white text-lg"></i>
+                        </div>
+                        <span class="font-heading text-xl font-bold text-black">PromptMaster</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-2 pt-4 pl-2">
+                    <a href="#formula" class="nav-link font-medium active">
+                        <i class="fas fa-layer-group mr-2"></i>
+                        The Formula
+                    </a>
+                    <a href="#context" class="nav-link font-medium">
+                        <i class="fas fa-crosshairs mr-2"></i>
+                        Context Layer
+                    </a>
+                    <a href="#specificity" class="nav-link font-medium">
+                        <i class="fas fa-bullseye mr-2"></i>
+                        Specificity Matrix
+                    </a>
+                    <a href="#templates" class="nav-link font-medium">
+                        <i class="fas fa-code mr-2"></i>
+                        Templates
+                    </a>
+                    <a href="#mistakes" class="nav-link font-medium">
+                        <i class="fas fa-times-circle mr-2"></i>
+                        Common Mistakes
+                    </a>
+                   
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <!-- Header / Hero Section -->
+        <header class="relative overflow-hidden bg-black text-white py-16 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0 slide-up">
+                        <h1 class="font-heading text-4xl md:text-5xl font-bold mb-6 typewriter">Master AI Prompt Engineering</h1>
+                        <p class="text-xl mb-8 text-indigo-100">Learn the exact formulas to get perfect results from AI assistants like ChatGPT, Claude, and DeepSeek.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#formula" class="glass-effect bg-black font-semibold py-3 px-6 rounded-lg text-white shadow-lg pulse">
+                                <i class="fas fa-play mr-2"></i>
+                                Start Learning
+                            </a>
+                            <a href="#templates" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-black hover:text-white transition-all">
+                                <i class="fas fa-code mr-2"></i>
+                                View Templates
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center slide-up">
+                        <div class="relative">
+                            <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-yellow-400 opacity-20"></div>
+                            <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-pink-500 opacity-20"></div>
+                            <div class="relative glass-effect p-8 rounded-2xl shadow-2xl max-w-md">
+                                <div class="text-center mb-6">
+                                    <i class="fas fa-robot text-5xl text-black"></i>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                    <p class="text-sm text-gray-600 mb-1">Your Current Prompt:</p>
+                                    <p class="text-gray-800 font-medium">"Write some code"</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                    <p class="text-sm text-green-600 mb-1">After This Guide:</p>
+                                    <p class="text-gray-800 font-medium">"Create a React component with TypeScript, Tailwind, accessibility, and error handling..."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <div class="container mx-auto max-w-6xl py-12 px-4">
+            
+            <!-- The Ultimate Formula Section -->
+            <section id="formula" class="mb-20 slide-up">
+                <div class="text-center mb-12">
+                    <span class="prompt-badge text-white text-sm font-semibold py-2 px-4 rounded-full mb-4 inline-block">The Foundation</span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">The Ultimate Prompt Formula</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">This formula works for ANY AI model. Master it once, use it everywhere.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-6 mb-10">
+                    <div class="glass-effect p-6 rounded-xl hover-lift">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-layer-group text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">CONTEXT</h3>
+                        <p class="text-gray-600">Set the stage and environment</p>
+                    </div>
+                    
+                    <div class="glass-effect p-6 rounded-xl hover-lift">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-crosshairs text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">SPECIFICITY</h3>
+                        <p class="text-gray-600">Be surgical with your requirements</p>
+                    </div>
+                    
+                    <div class="glass-effect p-6 rounded-xl hover-lift">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-ban text-red-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">CONSTRAINTS</h3>
+                        <p class="text-gray-600">Define what NOT to do</p>
+                    </div>
+                    
+                    <div class="glass-effect p-6 rounded-xl hover-lift">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">FORMAT</h3>
+                        <p class="text-gray-600">How to structure the output</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl border border-blue-200">
+                    <div class="flex items-start">
+                        <div class="mr-4 mt-1">
+                            <i class="fas fa-lightbulb text-yellow-500 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">The Complete Formula</h4>
+                            <div class="glass-effect p-6 rounded-lg mb-4">
+                                <code class="text-lg font-mono text-gray-800">
+                                    CONTEXT + SPECIFICITY + CONSTRAINTS + FORMAT = PERFECT RESULT
+                                </code>
+                            </div>
+                            <p class="text-gray-700">This isn't just theory. This formula has been tested with ChatGPT, Claude, Gemini, and DeepSeek with consistent excellent results.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Context Layer Section -->
+            <section id="context" class="mb-20 slide-up">
+                <div class="flex flex-col md:flex-row items-center mb-12">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <span class="prompt-badge text-white text-sm font-semibold py-2 px-4 rounded-full mb-4 inline-block">Step 1</span>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">The <span class="highlight">Context Layer</span></h2>
+                        <p class="text-xl text-gray-600 mb-6">AI doesn't know what you're building unless you tell it. Good context turns generic responses into tailored solutions.</p>
+                        <div class="tip-card glass-effect p-6 rounded-r-lg mb-4">
+                            <h4 class="font-bold text-lg mb-2"><i class="fas fa-check-circle text-green-500 mr-2"></i> Pro Tip</h4>
+                            <p>Always include: Project type, target audience, tech stack, and business goals.</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="glass-effect p-6 rounded-2xl hover-lift">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-lg">Example Comparison</h4>
+                                <button class="copy-btn text-sm bg-blue-100 text-blue-700 py-1 px-3 rounded hover:bg-blue-200" onclick="copyToClipboard('context-example')">Copy</button>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                                    <h5 class="font-semibold text-red-600">❌ Bad Prompt</h5>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                                    <p class="text-gray-800">"Write a login form"</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                                    <h5 class="font-semibold text-green-600">✅ Excellent Prompt</h5>
+                                </div>
+                                <div id="context-example" class="bg-green-50 p-4 rounded-lg border border-green-200 font-mono text-sm">
+                                    <span class="text-gray-600">// Context sets the stage</span><br>
+                                    "I'm building a <span class="text-blue-600 font-semibold">Next.js 14 SaaS app</span> with <span class="text-blue-600 font-semibold">TypeScript</span> and <span class="text-blue-600 font-semibold">Tailwind</span>.<br>
+                                    Users are <span class="text-blue-600 font-semibold">enterprise clients</span> who need <span class="text-blue-600 font-semibold">multi-factor authentication</span>.<br>
+                                    We're using <span class="text-blue-600 font-semibold">Prisma with PostgreSQL</span> for the database."<br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Specificity Matrix Section -->
+            <section id="specificity" class="mb-20 slide-up">
+                <div class="text-center mb-12">
+                    <span class="prompt-badge text-white text-sm font-semibold py-2 px-4 rounded-full mb-4 inline-block">Step 2</span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">The <span class="highlight">Specificity Matrix</span></h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Vague requests get vague results. Be surgical with your requirements.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <div class="glass-effect p-6 rounded-2xl hover-lift">
+                        <h4 class="font-bold text-xl mb-6 flex items-center">
+                            <i class="fas fa-cube text-blue-500 mr-3"></i> Component-Level Specificity
+                        </h4>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                                <h5 class="font-semibold text-gray-700">❌ Vague Request</h5>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                                <p>"Make a button"</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                                <h5 class="font-semibold text-gray-700">✅ Specific Request</h5>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                <p class="font-mono text-sm">
+                                    "Create a React button component with:<br>
+                                    • Primary/secondary/ghost variants<br>
+                                    • Small/medium/large sizes<br>
+                                    • Loading state with spinner<br>
+                                    • Disabled state with opacity<br>
+                                    • Icon support (left/right/both)<br>
+                                    • Full TypeScript interface<br>
+                                    • Tailwind classes for dark mode<br>
+                                    • Accessibility attributes<br>
+                                    • Storybook stories<br>
+                                    • Unit tests with Jest"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect p-6 rounded-2xl hover-lift">
+                        <h4 class="font-bold text-xl mb-6 flex items-center">
+                            <i class="fas fa-code text-purple-500 mr-3"></i> Function-Level Specificity
+                        </h4>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                                <h5 class="font-semibold text-gray-700">❌ Vague Request</h5>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                                <p>"Write authentication"</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                                <h5 class="font-semibold text-gray-700">✅ Specific Request</h5>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                <p class="font-mono text-sm">
+                                    "Implement a NextAuth.js configuration with:<br>
+                                    • Email/password login<br>
+                                    • Google OAuth provider<br>
+                                    • JWT session strategy<br>
+                                    • Database adapter for Prisma<br>
+                                    • Role-based access control<br>
+                                    • Session callback to add user role<br>
+                                    • Middleware for route protection<br>
+                                    • Error handling for each provider"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Constraints Section -->
+            <section class="mb-20 slide-up">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <span class="prompt-badge text-white text-sm font-semibold py-2 px-4 rounded-full mb-4 inline-block">Step 3</span>
+                        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">The <span class="highlight">Constraints Section</span></h2>
+                        <p class="text-xl text-gray-600 mb-6">Most people forget this critical part. Tell the AI what NOT to do to avoid unwanted outputs.</p>
+                        
+                        <div class="constraint-card glass-effect p-6 rounded-r-lg mb-6">
+                            <h4 class="font-bold text-lg mb-3">Why Constraints Matter</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li class="mb-2">Prevents AI from making assumptions</li>
+                                <li class="mb-2">Ensures compliance with your tech standards</li>
+                                <li>Eliminates unwanted features or approaches</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="glass-effect p-6 rounded-2xl hover-lift">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-lg">Constraints Example</h4>
+                                <button class="copy-btn text-sm bg-blue-100 text-blue-700 py-1 px-3 rounded hover:bg-blue-200" onclick="copyToClipboard('constraints-example')">Copy</button>
+                            </div>
+                            
+                            <div id="constraints-example" class="bg-gray-800 text-gray-100 p-6 rounded-lg font-mono text-sm overflow-x-auto">
+                                <span class="text-green-400">CONSTRAINTS:</span><br>
+                                <span class="text-gray-400">- DO NOT use any external UI libraries (build from scratch)</span><br>
+                                <span class="text-gray-400">- DO NOT use useState for form handling (use react-hook-form)</span><br>
+                                <span class="text-gray-400">- DO NOT add any console.log statements in production code</span><br>
+                                <span class="text-gray-400">- DO NOT hardcode API URLs (use environment variables)</span><br>
+                                <span class="text-gray-400">- DO NOT use any deprecated Next.js 13 patterns</span><br>
+                                <span class="text-green-400">- MUST be TypeScript strict mode compliant</span><br>
+                                <span class="text-green-400">- MUST follow ESLint rules (no-explicit-any, etc.)</span><br>
+                                <span class="text-green-400">- MUST be mobile-responsive first</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Templates Section -->
+            <section id="templates" class="mb-20 slide-up">
+                <div class="text-center mb-12">
+                    <span class="success-badge text-white text-sm font-semibold py-2 px-4 rounded-full mb-4 inline-block">Ready-to-Use</span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">Real-World <span class="highlight">Prompt Templates</span></h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Copy-paste these templates and customize for your needs.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-10">
+                    <div class="glass-effect rounded-xl overflow-hidden hover-lift">
+                        <div class="p-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-file-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Full Feature Request</h3>
+                            <p class="text-gray-600 mb-4">Complete template for requesting complex features</p>
+                            <button class="copy-btn text-blue-600 font-semibold text-sm flex items-center hover:text-blue-700" onclick="copyToClipboard('template1')">
+                                <i class="far fa-copy mr-2"></i> Copy Template
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl overflow-hidden hover-lift">
+                        <div class="p-6">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-cube text-green-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Component Generation</h3>
+                            <p class="text-gray-600 mb-4">Template for creating specific UI components</p>
+                            <button class="copy-btn text-green-600 font-semibold text-sm flex items-center hover:text-green-700" onclick="copyToClipboard('template2')">
+                                <i class="far fa-copy mr-2"></i> Copy Template
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl overflow-hidden hover-lift">
+                        <div class="p-6">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-bug text-purple-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Bug Fix / Refactor</h3>
+                            <p class="text-gray-600 mb-4">Template for fixing issues or refactoring code</p>
+                            <button class="copy-btn text-purple-600 font-semibold text-sm flex items-center hover:text-purple-700" onclick="copyToClipboard('template3')">
+                                <i class="far fa-copy mr-2"></i> Copy Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hidden Templates -->
+                <div id="template1" class="hidden">
+I'm building [PROJECT TYPE] for [TARGET AUDIENCE].
+
+TECH STACK:
+- Frontend: [Framework + version]
+- Styling: [CSS framework]
+- Backend: [API/Server solution]
+- Database: [Database + ORM]
+- Authentication: [Auth solution]
+
+REQUIREMENTS:
+1. [Feature 1 with acceptance criteria]
+2. [Feature 2 with acceptance criteria]
+3. [Feature 3 with acceptance criteria]
+
+CONSTRAINTS:
+- [What to avoid]
+- [Performance requirements]
+- [Security requirements]
+
+DELIVERABLES:
+- [File 1.tsx]
+- [File 2.ts]
+- [File 3.test.ts]
+- [README.md with setup instructions]
+
+PREFERRED PATTERNS:
+- [Specific architectural pattern]
+- [Folder structure]
+- [Naming conventions]
+                </div>
+                
+                <div id="template2" class="hidden">
+COMPONENT: [Component Name]
+PURPOSE: [What it does in the app hierarchy]
+
+PROPS INTERFACE:
+{
+  variant: 'primary' | 'secondary' | 'danger'
+  size: 'sm' | 'md' | 'lg'
+  isLoading?: boolean
+  onClick: () => void
+  children: React.ReactNode
+}
+
+FEATURES NEEDED:
+- [ ] Accessibility compliant
+- [ ] Dark mode support
+- [ ] RTL language support
+- [ ] Unit tests
+- [ ] Storybook documentation
+
+STYLING REQUIREMENTS:
+- Use Tailwind with @apply directives
+- Hover/focus states
+- Transition animations
+- Responsive breakpoints
+
+EXAMPLE USAGE:
+<Button variant="primary" size="lg" onClick={handleClick}>
+  Submit Form
+</Button>
+                </div>
+                
+                <div id="template3" class="hidden">
+FILE: /components/UserProfile.tsx
+PROBLEM: Component re-renders 5x on every keystroke
+
+CURRENT ISSUES:
+1. useEffect dependency array causing infinite loops
+2. Props drilling causing unnecessary re-renders
+3. No React.memo or useMemo optimization
+
+REQUIREMENTS:
+- Reduce re-renders to only when user data changes
+- Implement proper memoization
+- Split into smaller components
+- Add performance monitoring comments
+
+DO NOT:
+- Change the API interface
+- Remove any existing features
+- Break TypeScript types
+                </div>
+            </section>
+            
+            <!-- Common Mistakes Section -->
+            <section id="mistakes" class="mb-20 slide-up">
+                <div class="text-center mb-12">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">Common <span class="highlight">Mistakes & Fixes</span></h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Avoid these pitfalls that waste time and produce poor results.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-effect p-6 rounded-xl hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-times text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Mistake: "Make it fast"</h4>
+                                <p class="text-gray-600 text-sm">Too vague, results in generic optimizations</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <p class="text-gray-800">❌ What you get: Basic suggestions like "use memoization"</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <h5 class="font-semibold text-green-700 mb-2">✅ The Fix:</h5>
+                            <p>"Optimize for O(log n) time complexity, implement debouncing on search, use React.memo for expensive components, lazy load non-critical resources."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect p-6 rounded-xl hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-times text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Mistake: "Add validation"</h4>
+                                <p class="text-gray-600 text-sm">No details on what or how to validate</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <p class="text-gray-800">❌ What you get: Basic HTML5 validation attributes</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <h5 class="font-semibold text-green-700 mb-2">✅ The Fix:</h5>
+                            <p>"Implement Zod schema validation with custom error messages for: email format, password strength (8+ chars, mixed case, numbers), unique username, and phone number format."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto max-w-6xl px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="font-heading text-2xl font-bold mb-4 gradient-text">AI Prompt Engineering</h3>
+                    <p class="text-gray-400">Master the art of communicating with AI</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2026 AI Prompt Engineering Guide. All information based on testing with ChatGPT, Claude, Gemini, and DeepSeek.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Copy to clipboard function
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent || element.innerText;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Show feedback
+                const btn = event.target.closest('.copy-btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
+                btn.classList.add('bg-green-100', 'text-green-700');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-100', 'text-green-700');
+                }, 2000);
+            });
+        }
+        
+        // Reveal answer for practice exercise
+        function revealAnswer() {
+            const answer = document.getElementById('answer');
+            answer.classList.remove('hidden');
+            answer.classList.add('slide-up');
+        }
+        
+        // Smooth scroll and active nav highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            // Highlight active nav on scroll
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Add entrance animations for elements
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('slide-up');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const navItems = document.querySelectorAll('.nav-link');
+            
+            if (mobileMenuButton) {
+                // Create mobile menu
+                const mobileMenu = document.createElement('div');
+                mobileMenu.className = 'fixed inset-0 bg-white z-50 hidden';
+                mobileMenu.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-8">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                                    <i class="fas fa-robot text-white text-sm"></i>
+                                </div>
+                                <span class="font-heading text-lg font-bold gradient-text">PromptMaster</span>
+                            </div>
+                            <button class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center" id="closeMobileMenu">
+                                <i class="fas fa-times text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="space-y-2">
+                            ${Array.from(navItems).map(link => `
+                                <a href="${link.getAttribute('href')}" class="flex items-center px-4 py-3 rounded-lg bg-gray-100 text-gray-700 font-medium">
+                                    ${link.innerHTML}
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(mobileMenu);
+                
+                const closeMobileMenu = document.getElementById('closeMobileMenu');
+                
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                closeMobileMenu.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = '';
+                });
+                
+                // Close mobile menu when clicking on a link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+            
+            // Search functionality
+            const searchInputs = document.querySelectorAll('input[placeholder="Search guides..."]');
+            searchInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('ring-2', 'ring-indigo-500');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('ring-2', 'ring-indigo-500');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
