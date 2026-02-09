@@ -376,45 +376,61 @@
     <!-- Main Content -->
     <main class="pt-20">
         <!-- Header / Hero Section -->
-        <header class="relative overflow-hidden bg-black text-white py-16 px-4">
-            <div class="container mx-auto max-w-6xl">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 mb-10 md:mb-0 slide-up">
-                        <h1 class="font-heading text-4xl md:text-5xl font-bold mb-6 typewriter">Master AI Prompt Engineering</h1>
-                        <p class="text-xl mb-8 text-indigo-100">Learn the exact formulas to get perfect results from AI assistants like ChatGPT, Claude, and DeepSeek.</p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#formula" class="glass-effect bg-black font-semibold py-3 px-6 rounded-lg text-white shadow-lg pulse">
-                                <i class="fas fa-play mr-2"></i>
-                                Start Learning
-                            </a>
-                            <a href="#templates" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-black hover:text-white transition-all">
-                                <i class="fas fa-code mr-2"></i>
-                                View Templates
-                            </a>
+       <header class="relative overflow-hidden bg-black text-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+    <div class="container mx-auto max-w-7xl 2xl:max-w-8xl">
+        <div class="flex flex-col lg:flex-row items-center">
+            <!-- Left Column - Content -->
+            <div class="w-full lg:w-1/2 mb-10 sm:mb-12 md:mb-0 lg:mb-0 slide-up">
+                <h1 class="font-heading text-3xl xs:text-4xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 typewriter leading-tight md:leading-snug">
+                    Master AI Prompt Engineering
+                </h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl mb-6 sm:mb-7 md:mb-8 text-indigo-100 leading-relaxed md:leading-loose">
+                    Learn the exact formulas to get perfect results from AI assistants like ChatGPT, Claude, and DeepSeek.
+                </p>
+                <div class="flex flex-col xs:flex-row flex-wrap gap-3 sm:gap-4">
+                    <a href="#formula" class="glass-effect bg-black font-semibold py-3 px-4 sm:py-3 sm:px-5 md:py-3 md:px-6 rounded-lg text-white shadow-lg pulse text-center text-sm sm:text-base md:text-lg min-h-[44px] flex items-center justify-center">
+                        <i class="fas fa-play mr-2 text-xs sm:text-sm md:text-base"></i>
+                        Start Learning
+                    </a>
+                    <a href="#templates" class="bg-transparent border border-white sm:border-2 text-white font-semibold py-3 px-4 sm:py-3 sm:px-5 md:py-3 md:px-6 rounded-lg hover:bg-white hover:text-black transition-all text-center text-sm sm:text-base md:text-lg min-h-[44px] flex items-center justify-center">
+                        <i class="fas fa-code mr-2 text-xs sm:text-sm md:text-base"></i>
+                        View Templates
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Column - Visual Card -->
+            <div class="w-full lg:w-1/2 flex justify-center slide-up px-2 sm:px-4 md:px-8 lg:px-12 xl:px-16">
+                <div class="relative w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-md xl:max-w-lg 2xl:max-w-xl">
+                    <!-- Decorative Circles -->
+                    <div class="absolute -top-3 -left-3 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full bg-yellow-400 opacity-20"></div>
+                    <div class="absolute -bottom-3 -right-3 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-32 xl:h-32 rounded-full bg-pink-500 opacity-20"></div>
+                    
+                    <!-- Glass Card -->
+                    <div class="relative glass-effect p-4 sm:p-6 md:p-8 lg:p-6 xl:p-8 rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl w-full">
+                        <div class="text-center mb-4 sm:mb-5 md:mb-6">
+                            <i class="fas fa-robot text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl text-white"></i>
                         </div>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center slide-up">
-                        <div class="relative">
-                            <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-yellow-400 opacity-20"></div>
-                            <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-pink-500 opacity-20"></div>
-                            <div class="relative glass-effect p-8 rounded-2xl shadow-2xl max-w-md">
-                                <div class="text-center mb-6">
-                                    <i class="fas fa-robot text-5xl text-black"></i>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                                    <p class="text-sm text-gray-600 mb-1">Your Current Prompt:</p>
-                                    <p class="text-gray-800 font-medium">"Write some code"</p>
-                                </div>
-                                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-                                    <p class="text-sm text-green-600 mb-1">After This Guide:</p>
-                                    <p class="text-gray-800 font-medium">"Create a React component with TypeScript, Tailwind, accessibility, and error handling..."</p>
-                                </div>
-                            </div>
+                        
+                        <!-- Before Example -->
+                        <div class="bg-gray-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
+                            <p class="text-xs sm:text-sm md:text-sm lg:text-xs xl:text-sm text-gray-600 mb-1">Your Current Prompt:</p>
+                            <p class="text-gray-800 font-medium text-sm sm:text-base md:text-base lg:text-sm xl:text-base truncate">"Write some code"</p>
+                        </div>
+                        
+                        <!-- After Example -->
+                        <div class="bg-green-50 p-3 sm:p-4 rounded-lg border border-green-200">
+                            <p class="text-xs sm:text-sm md:text-sm lg:text-xs xl:text-sm text-green-600 mb-1">After This Guide:</p>
+                            <p class="text-gray-800 font-medium text-sm sm:text-base md:text-base lg:text-sm xl:text-base leading-tight sm:leading-snug">
+                                "Create a React component with TypeScript, Tailwind, accessibility, and error handling..."
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </div>
+</header>
 
         <!-- Content Sections -->
         <div class="container mx-auto max-w-6xl py-12 px-4">
